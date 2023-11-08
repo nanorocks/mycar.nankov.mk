@@ -11,7 +11,7 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
 
-    <title>CAR SERVICE HISTORY!</title>
+    <title>SERVICE HISTORY MANAGER!</title>
     @livewireStyles
 </head>
 

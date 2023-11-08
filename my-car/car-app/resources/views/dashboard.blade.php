@@ -11,7 +11,7 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
 
-    <title>CAR SERVICE HISTORY!</title>
+    <title>CAR SERVICE MANAGER!</title>
     @livewireStyles
 </head>
 
@@ -23,7 +23,13 @@
 
         <livewire:vehicle />
 
-        <livewire:base-information-table />
+        <div class="container">
+            <hr />
+            <h4>Base Information <a href="{{ route('base.information.manager') }}"
+                    class="btn btn-sm btn-link small">Content
+                    Manager</a></h4>
+            <livewire:base-information-table />
+        </div>
 
         <div class="container">
             <hr />

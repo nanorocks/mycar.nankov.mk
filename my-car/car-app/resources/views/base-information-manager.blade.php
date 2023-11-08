@@ -11,7 +11,7 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
 
-    <title>NEEDED SERVICE MANAGER!</title>
+    <title>BASE INFORMATION MANAGER!</title>
     @livewireStyles
 </head>
 
@@ -30,7 +30,7 @@
                 <button class="btn btn-sm btn-link small" onclick="window.location.reload()">Create new</button>
             </h4>
 
-            <livewire:needed-services-table isEditMode="true" />
+            <livewire:base-information-table isEditMode="true" />
         </div>
     </main>
 

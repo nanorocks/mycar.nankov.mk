@@ -1,35 +1,38 @@
-    <div class="container">
-        <hr />
-        <h4>Base Information</h4>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Attribute</th>
-                        <th scope="col">Value</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if ($attributes->isEmpty())
-                        <tr>
-                            <td colspan="3">No data entry...</td>
-                        </tr>
-                    @endif
+{{-- <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Attribute</th>
+                <th scope="col">Value</th>
+                @if ($isEditMode)
+                    <th>Actions</th>
+                @endif
+            </tr>
+        </thead>
+        <tbody>
+            @if ($attributes->isEmpty())
+                <tr>
+                    <td colspan="3">No data entry...</td>
+                </tr>
+            @endif
 
-                    @foreach ($attributes as $attribute)
-                        <tr wire:key="{{ $attribute->id }}">
-                            <td>{{ $attribute->attribute }}</td>
-                            <td>{{ $attribute->value }}</td>
-                            <th>
-                                <div class="d-flex">
-                                    <a href="#" class="mx-1 small text-success">Edit</a>
-                                    <a href="#" class="mx-1 small text-danger">Delete</a>
-                                </div>
-                            </th>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+            @foreach ($attributes as $item)
+                <tr wire:key="{{ $item->id }}">
+                    <td>{{ $item->attribute }}</td>
+                    <td>{{ $item->value }}</td>
+                    @if ($isEditMode)
+                        <th>
+                            <div class="d-flex">
+                                <button class="mx-1 small text-success btn btn-link btn-sm"
+                                    wire:click="edit({{ $item->id }})">Edit</button>
+                                <button button class="mx-1 small text-danger btn btn-link btn-sm"
+                                    wire:click="delete({{ $item->id }})"
+                                    wire:confirm="Are you sure you want to delete this item?">Delete</button>
+                            </div>
+                        </th>
+                    @endif
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div> --}}

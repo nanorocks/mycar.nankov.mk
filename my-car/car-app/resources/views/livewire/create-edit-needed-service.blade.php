@@ -74,7 +74,7 @@
                 Submit
             </div>
             <div wire:loading>
-                Saving ...
+                Loading ...
             </div>
         </button>
 

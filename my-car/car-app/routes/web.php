@@ -26,6 +26,10 @@ Route::get('/needed-service-manager', [DashboardController::class, 'neededServic
     ->name('needed.service.manager')
     ->middleware('auth.basic');
 
+Route::get('/base-information-manager', [DashboardController::class, 'baseInformationManager'])
+    ->name('base.information.manager')
+    ->middleware('auth.basic');
+
 Route::get('/logout', [DashboardController::class, 'logout'])
     ->name('auth.logout')
     ->middleware('auth.basic');

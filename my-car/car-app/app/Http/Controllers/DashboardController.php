@@ -23,6 +23,11 @@ class DashboardController extends Controller
         return view('needed-service-manager');
     }
 
+    public function baseInformationManager()
+    {
+        return view('base-information-manager');
+    }
+
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
