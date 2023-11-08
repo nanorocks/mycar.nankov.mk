@@ -16,7 +16,7 @@ class Vehicle extends Model
 
     public function vehicleAttributes()
     {
-        return $this->hasMany(VehicleAttribute::class);
+        return $this->hasMany(VehicleAttribute::class, 'vehicle_id', 'id');
     }
 
     public function vehicleNeededServices()

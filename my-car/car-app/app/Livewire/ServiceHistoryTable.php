@@ -16,11 +16,6 @@ class ServiceHistoryTable extends Component
 
     public $services;
 
-    public function addNeededService()
-    {
-        $this->reset('service');
-    }
-
     public function new()
     {
         $this->dispatch('new.service.history');

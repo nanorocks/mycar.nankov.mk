@@ -21,7 +21,7 @@
             You're logged in as: {{ Auth::user()->name }}
         </div>
 
-        <livewire:create-edit-needed-service />
+        <livewire:create-edit-base-information />
 
         <div class="container">
             <hr />

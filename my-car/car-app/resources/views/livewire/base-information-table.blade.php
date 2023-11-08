@@ -1,4 +1,4 @@
-{{-- <div class="table-responsive">
+<div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -10,13 +10,13 @@
             </tr>
         </thead>
         <tbody>
-            @if ($attributes->isEmpty())
+            @if ($services->isEmpty())
                 <tr>
                     <td colspan="3">No data entry...</td>
                 </tr>
             @endif
 
-            @foreach ($attributes as $item)
+            @foreach ($services as $item)
                 <tr wire:key="{{ $item->id }}">
                     <td>{{ $item->attribute }}</td>
                     <td>{{ $item->value }}</td>
@@ -35,4 +35,4 @@
             @endforeach
         </tbody>
     </table>
-</div> --}}
+</div>
