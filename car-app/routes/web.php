@@ -19,16 +19,13 @@ Route::get('/', [DashboardController::class, 'index'])
     ->middleware('auth.basic');
 
 Route::get('/service-history-manager', [DashboardController::class, 'serviceHistoryManager'])
-    ->name('service.history.manager')
-    ->middleware('auth.basic');
+    ->name('service.history.manager');
 
 Route::get('/needed-service-manager', [DashboardController::class, 'neededServiceManager'])
-    ->name('needed.service.manager')
-    ->middleware('auth.basic');
+    ->name('needed.service.manager');
 
 Route::get('/base-information-manager', [DashboardController::class, 'baseInformationManager'])
-    ->name('base.information.manager')
-    ->middleware('auth.basic');
+    ->name('base.information.manager');
 
 Route::get('/logout', [DashboardController::class, 'logout'])
     ->name('auth.logout')
