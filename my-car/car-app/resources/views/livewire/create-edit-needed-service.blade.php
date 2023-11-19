@@ -1,6 +1,7 @@
 <div class="container pb-4 pt-5">
     <h3>{{ $isEditMode ? 'Edit' : 'Create' }} Needed Service</h3>
     <form wire:submit="{{ $isEditMode ? 'update' : 'add' }}">
+        @csrf
         <div class="form-group">
             <input wire:model="form.vehicle_id" type="hidden"
                 class="form-control @error('form.vehicle_id') is-invalid @enderror" id="date"
