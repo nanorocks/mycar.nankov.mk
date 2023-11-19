@@ -45,8 +45,14 @@ To run the application locally, follow these steps:
     ```bash
     php artisan migrate --seed
     ```
+5. For Laravel Breeze run:
 
-5. Run the development server:
+    ```bash
+    npm install
+    npm run build
+    ```
+
+6. Run the development server:
 
     ```bash
     php artisan serve
