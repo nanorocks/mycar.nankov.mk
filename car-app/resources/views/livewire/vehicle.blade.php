@@ -1,6 +1,6 @@
 <div>
     <div class="text-center">
-        <h1 class="display-3">{{ $vehicle->vehicle_register_number }} - SERVICE HISTORY</h1>
+        <h1 class="display-4">{{ $vehicle->vehicle_register_number }} - SERVICE HISTORY</h1>
     </div>
     <div class="w-100">
         <div>

@@ -26,7 +26,7 @@
         <div class="container">
             <hr />
             <h4>Service History
-                <a href="{{ route('home') }}" class="btn btn-sm btn-link small">Go back</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-sm btn-link small">Go back</a>
                 <button class="btn btn-sm btn-link small" onclick="window.location.reload()">Create new</button>
             </h4>
 
