@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('attribute');
             $table->string('value');
 
-            $table->unsignedInteger('vehicle_id');
+            $table->unsignedBigInteger('vehicle_id');
             $table->foreign('vehicle_id')
                 ->references('id')
                 ->on('vehicles')

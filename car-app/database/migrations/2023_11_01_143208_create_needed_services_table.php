@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('last_service_date');
             $table->string('next_service_due');
 
-            $table->unsignedInteger('vehicle_id');
+            $table->unsignedBigInteger('vehicle_id');
             $table->foreign('vehicle_id')
                 ->references('id')
                 ->on('vehicles')

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('cost');
 
-            $table->unsignedInteger('vehicle_id');
+            $table->unsignedBigInteger('vehicle_id');
             $table->foreign('vehicle_id')
                 ->references('id')
                 ->on('vehicles')

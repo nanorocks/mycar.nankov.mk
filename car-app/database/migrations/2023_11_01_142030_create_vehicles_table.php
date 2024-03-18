@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('vehicle_register_number');
             $table->text('other');
 
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id'); // Change to unsignedBigInteger for consistency
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
