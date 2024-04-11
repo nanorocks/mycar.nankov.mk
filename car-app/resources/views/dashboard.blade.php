@@ -20,8 +20,8 @@
 
         <div class="container">
             <hr />
-            <h4>Service History <a href="{{ route('service.history.manager') }}"
-                    class="btn btn-sm btn-link small">Content Manager</a></h4>
+            <h4>Service History <a href="{{ route('service.history.manager') }}" class="btn btn-sm btn-link small">Content
+                    Manager</a></h4>
             <livewire:service-history-table />
         </div>
     </main>

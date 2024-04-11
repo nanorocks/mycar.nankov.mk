@@ -29,12 +29,11 @@
                 <li style="display: inline; margin-right: 10px;">PHP: {{ phpversion() }}</li>
                 <li style="display: inline;">Laravel: {{ app()->version() }}</li>
             </ul>
-        </div>
 
-        <div
-            class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
             {{ $slot }}
         </div>
+
+
     </div>
 </body>
 
