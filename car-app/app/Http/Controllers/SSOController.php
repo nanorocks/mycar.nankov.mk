@@ -25,16 +25,15 @@ class SSOController extends Controller
         $request->session()->put('state', $state = Str::random(40));
 
         $query = http_build_query([
-            'client_id' => '9bc6ca47-9ff8-4b25-b590-e019c3ea944b',
-            'redirect_uri' => 'http://localhost/auth/callback',
+            'client_id' => config('auth.sso_client_id'),
+            'redirect_uri' => config('auth.sso_redirect'),
             'response_type' => 'code',
             'scope' => '*',
             'state' => $state,
         ]);
 
-        return redirect('https://andrej.nankov.mk/oauth/authorize?' . $query);
+        return redirect(config('auth.sso_url') . '/oauth/authorize?' . $query);
     }
-
 
     public function callback(Request $request)
     {
@@ -46,11 +45,11 @@ class SSOController extends Controller
             'Invalid state value.'
         );
 
-        $response = Http::asForm()->post('https://andrej.nankov.mk/oauth/token', [
+        $response = Http::asForm()->post(config('auth.sso_url') . '/oauth/token', [
             'grant_type' => 'authorization_code',
-            'client_id' => '9bc6ca47-9ff8-4b25-b590-e019c3ea944b',
-            'client_secret' => '5msUIfazZSfelQvVpFcsjTVrKV2nBobVpNoyuukA',
-            'redirect_uri' => 'http://localhost/auth/callback',
+            'client_id' => config('auth.sso_client_id'),
+            'client_secret' => config('auth.sso_client_secret'),
+            'redirect_uri' => config('auth.sso_redirect'),
             'code' => $request->code,
         ]);
 
@@ -100,7 +99,7 @@ class SSOController extends Controller
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Authorization' => sprintf('%s %s', $authTokenData['token_type'], $authTokenData['access_token']),
-        ])->get('https://andrej.nankov.mk/api/logout');
+        ])->get(config('auth.sso_url') . '/api/logout');
 
 
         Auth::guard('web')->logout();
