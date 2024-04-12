@@ -35,13 +35,13 @@ class SSOController extends Controller
 
     public function callback(Request $request)
     {
-        // $state = $request->session()->pull('state');
+        $state = $request->session()->pull('state');
 
-        // throw_unless(
-        //     strlen($state) > 0 && $state === $request->state,
-        //     InvalidArgumentException::class,
-        //     'Invalid state value.'
-        // );
+        throw_unless(
+            strlen($state) > 0 && $state === $request->state,
+            InvalidArgumentException::class,
+            'Invalid state value.'
+        );
 
         $response = Http::asForm()->post(config('auth.sso_url') . '/oauth/token', [
             'grant_type' => 'authorization_code',
