@@ -7,11 +7,9 @@ use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SSOController extends Controller
 {
@@ -37,13 +35,13 @@ class SSOController extends Controller
 
     public function callback(Request $request)
     {
-        $state = $request->session()->pull('state');
+        // $state = $request->session()->pull('state');
 
-        throw_unless(
-            strlen($state) > 0 && $state === $request->state,
-            InvalidArgumentException::class,
-            'Invalid state value.'
-        );
+        // throw_unless(
+        //     strlen($state) > 0 && $state === $request->state,
+        //     InvalidArgumentException::class,
+        //     'Invalid state value.'
+        // );
 
         $response = Http::asForm()->post(config('auth.sso_url') . '/oauth/token', [
             'grant_type' => 'authorization_code',
@@ -53,25 +51,12 @@ class SSOController extends Controller
             'code' => $request->code,
         ]);
 
-        $request->session()->put('authTokenData', $response->json());
-
-        return redirect('/user/profile');
-    }
-
-    public function profile(Request $request)
-    {
-        $authTokenData = $request->session()->pull('authTokenData');
-
-        throw_unless(
-            !is_null($authTokenData) && count($authTokenData) > 0,
-            InvalidArgumentException::class,
-            'Invalid authTokenData value.'
-        );
+        $authTokenData = $response->json();
 
         $response = Http::withHeaders([
             'Accept' => 'application/json',
             'Authorization' => sprintf('%s %s', $authTokenData['token_type'], $authTokenData['access_token']),
-        ])->get('https://andrej.nankov.mk/api/profile');
+        ])->get(config('auth.sso_url')  . '/api/profile');
 
         try {
             $payload = $response->json();
@@ -92,15 +77,14 @@ class SSOController extends Controller
 
     public function logout(Request $request)
     {
-
         $authTokenData = Session::get('authTokenData');
 
-        // dd($authTokenData);
-        $response = Http::withHeaders([
-            'Accept' => 'application/json',
-            'Authorization' => sprintf('%s %s', $authTokenData['token_type'], $authTokenData['access_token']),
-        ])->get(config('auth.sso_url') . '/api/logout');
+        // $response = Http::withHeaders([
+        //     'Accept' => 'application/json',
+        //     'Authorization' => sprintf('%s %s', $authTokenData['token_type'], $authTokenData['access_token']),
+        // ])->post(config('auth.sso_url') . '/api/logout');
 
+        Session::flash('authTokenData');
 
         Auth::guard('web')->logout();
 
