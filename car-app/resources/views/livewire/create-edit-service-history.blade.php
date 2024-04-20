@@ -1,70 +1,63 @@
-<div class="container pb-4 pt-5">
-    <h3>{{ $isEditMode ? 'Edit' : 'Create' }} Service History</h3>
-    <form wire:submit="{{ $isEditMode ? 'update' : 'add' }}">
-        @csrf
-        <div class="form-group">
-            <input wire:model="form.vehicle_id" type="hidden"
-                class="form-control @error('form.vehicle_id') is-invalid @enderror" id="date"
-                aria-describedby="date-err" placeholder="Enter date" value="{{ $service?->vehicle_id }}">
+<div class="container pb-4 pt-5 mt-5">
+    <div class="card w-full lg:w-1/2 shadow-xl" style="background: #1f2937">
+        <div class="card-body">
+            <h2 class="card-title pb-4">
+                {{ $isEditMode ? 'Edit' : 'Create' }} Service History
+            </h2>
+            <form wire:submit="{{ $isEditMode ? 'update' : 'add' }}">
+                @csrf
+                <input wire:model="form.vehicle_id" type="hidden"
+                    class="form-control @error('form.vehicle_id') is-invalid @enderror" id="date"
+                    aria-describedby="date-err" placeholder="Enter date" value="{{ $service?->vehicle_id }}">
 
-            <label for="date">Date</label>
-            <input wire:model="form.date" type="date"
-                class="form-control @error('form.service_type') is-invalid @enderror" id="date"
-                aria-describedby="date-err" placeholder="Enter date" value="{{ $service?->date }}">
-            <small id="date-err" class="form-text text-danger small">
-                @error('form.date')
-                    {{ $message }}
-                @enderror
-            </small>
+                <div class="pb-4">
+                    <x-input-label for="date">Date</x-input-label>
+                    <x-text-input-white wire:model="form.date" type="date" class="mt-1 block w-full" id="date"
+                        aria-describedby="date-err" placeholder="Enter date" value="{{ $service?->date }}" />
+
+                    <x-input-error class="mt-2" :messages="$errors->get('form.date')" />
+                </div>
+
+                <div class="pb-4">
+                    <x-input-label for="date">Service Type</x-input-label>
+                    <x-text-input-white wire:model="form.service_type" type="text" class="mt-1 block w-full"
+                        id="service-type" aria-describedby="service-type-err" placeholder="Enter Service Type"
+                        value="{{ $service?->service_type }}" />
+
+                    <x-input-error class="mt-2" :messages="$errors->get('form.service_type')" />
+                </div>
+
+                <div class="pb-4">
+                    <x-input-label for="description">Description</x-input-label>
+                    <x-text-textarea-white wire:model="form.description" class="mt-1 block w-full" id="description"
+                        rows="3"
+                        placeholder="Enter description">{{ $service?->description }}</x-text-textarea-white>
+                    <x-input-error class="mt-2" :messages="$errors->get('form.description')" />
+
+                </div>
+
+                <div class="pb-4">
+                    <x-input-label for="cost">Cost</x-input-label>
+                    <x-text-input-white wire:model="form.cost" type="text" class="mt-1 block w-full" id="cost"
+                        aria-describedby="cost-err" placeholder="Enter cost" value="{{ $service?->cost }}" />
+
+                    <x-input-error class="mt-2" :messages="$errors->get('form.cost')" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <div wire:loading.remove>
+                        Submit
+                    </div>
+                    <div wire:loading>
+                        Loading ...
+                    </div>
+                </button>
+
+                @if (session('status'))
+                    <div class="alert alert-success mt-2">
+                        {{ session('status') }}
+                    </div>
+                @endif
+            </form>
         </div>
-
-        <div class="form-group">
-            <label for="date">Service Type</label>
-            <input wire:model="form.service_type" type="text"
-                class="form-control @error('form.service_type') is-invalid @enderror" id="service-type"
-                aria-describedby="service-type-err" placeholder="Enter Service Type"
-                value="{{ $service?->service_type }}">
-            <small id="service-type-err" class="form-text text-danger small">
-                @error('form.service_type')
-                    {{ $message }}
-                @enderror
-            </small>
-        </div>
-
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea wire:model="form.description" class="form-control @error('form.description') is-invalid @enderror"
-                id="description" rows="3" placeholder="Enter description">{{ $service?->description }}</textarea>
-            <small id="description-err" class="form-text text-danger small">
-                @error('form.description')
-                    {{ $message }}
-                @enderror
-            </small>
-        </div>
-
-        <div class="form-group">
-            <label for="cost">Cost</label>
-            <input wire:model="form.cost" type="text" class="form-control @error('form.cost')is-invalid @enderror"
-                id="cost" aria-describedby="cost-err" placeholder="Enter cost" value="{{ $service?->cost }}">
-            <small id="cost-err" class="form-text text-danger small">
-                @error('form.cost')
-                    {{ $message }}
-                @enderror
-            </small>
-        </div>
-        <button type="submit" class="btn btn-primary">
-            <div wire:loading.remove>
-                Submit
-            </div>
-            <div wire:loading>
-                Loading ...
-            </div>
-        </button>
-
-        @if (session('status'))
-            <div class="alert alert-success mt-2">
-                {{ session('status') }}
-            </div>
-        @endif
-    </form>
+    </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="card w-full shadow-xl pb-2" style="background: #1f2937">
-    <div class="px-4 pt-2 flex justify-between mb-1">
+    <div class="px-4 pt-2 flex justify-between mb-1 mt-2">
         <div class="flex">
             <div class="btn btn-sm small">Needed services</div>
             @if ($isEditMode)
