@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $vehicle = \App\Models\Vehicle::create([
-            'name' => '2013 Citroen C-Elysee',
-            'vehicle_register_number' => 'SK 6840 BM',
-            'other' => '<iframe title="2023 Citroen C-Elysee" frameborder="0" allowfullscreen mozallowfullscreen="true"
+            'name' => '2013 Ford Focus',
+            'vehicle_register_number' => 'DD 0007 GB',
+            'other' => '<iframe title="2013 Ford Focus" frameborder="0" allowfullscreen mozallowfullscreen="true"
                 webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
                 execution-while-out-of-viewport execution-while-not-rendered web-share
                 src="https://sketchfab.com/models/a4c9631f9167430e97f5eed9e8bc7040/embed" height="480" class="w-100">
@@ -32,13 +32,13 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\VehicleAttribute::create([
             'attribute' => 'Model',
-            'value' => 'Citroen C-Elysee',
+            'value' => '2013 Ford Focus',
             'vehicle_id' => $vehicle->id
         ]);
 
         \App\Models\VehicleAttribute::create([
             'attribute' => 'Year',
-            'value' => 'SK 6840 BM',
+            'value' => 'DD 0007 GB',
             'vehicle_id' => $vehicle->id
         ]);
 
