@@ -1,6 +1,6 @@
 <div>
 
-    <div class="navbar bg-base-100">
+    <div class="navbar" style="background: #1f2937">
         <div class="flex-none">
             <div class="drawer drawer-end">
                 <input id="my-drawer-4" type="checkbox" class="drawer-toggle" />
@@ -17,7 +17,7 @@
                 </div>
                 <div class="drawer-side" style="z-index: 9">
                     <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-                    <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+                    <ul class="menu p-4 w-80 min-h-full     text-base-content" style="background: #1f2937">
                         <!-- Sidebar content here -->
                         <li class="p-4">You're logged in as: {{ Auth::user()->name }}</li>
                         <li><a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a></li>

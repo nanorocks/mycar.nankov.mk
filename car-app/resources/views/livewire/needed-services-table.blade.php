@@ -1,4 +1,4 @@
-<div class="card w-full bg-base-100 shadow-xl pb-2">
+<div class="card w-full shadow-xl pb-2" style="background: #1f2937">
     <div class="px-4 pt-2 flex justify-between mb-1">
         <div class="btn btn-sm small">Needed Service</div>
         <a href="{{ route('needed.service.manager') }}" class="btn btn-sm btn-primary small">Content

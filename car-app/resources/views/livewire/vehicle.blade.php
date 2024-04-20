@@ -1,4 +1,4 @@
-<div class="card w-full bg-base-100 shadow-xl mt-6">
+<div class="card w-full shadow-xl mt-6" style="background: #1f2937">
     <figure>
         {!! $vehicle->other !!}
     </figure>
