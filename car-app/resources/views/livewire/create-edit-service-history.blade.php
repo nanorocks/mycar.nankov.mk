@@ -43,20 +43,22 @@
 
                     <x-input-error class="mt-2" :messages="$errors->get('form.cost')" />
                 </div>
-                <button type="submit" class="btn btn-primary">
-                    <div wire:loading.remove>
-                        Submit
-                    </div>
-                    <div wire:loading>
-                        Loading ...
-                    </div>
-                </button>
+                <div class="card-actions justify-end">
+                    <button type="submit" class="btn btn-primary btn-sm mt-4">
+                        <div wire:loading.remove>
+                            Submit
+                        </div>
+                        <div wire:loading>
+                            Loading ...
+                        </div>
+                    </button>
 
-                @if (session('status'))
-                    <div class="alert alert-success mt-2">
-                        {{ session('status') }}
-                    </div>
-                @endif
+                    @if (session('status'))
+                        <div class="alert alert-success mt-2">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                </div>
             </form>
         </div>
     </div>

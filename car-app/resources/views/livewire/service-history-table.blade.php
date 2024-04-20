@@ -47,7 +47,7 @@
                                 <div class="d-flex">
                                     <button class="mx-1 small text-success btn btn-link btn-sm"
                                         wire:click="edit({{ $item->id }})">Edit</button>
-                                    <button button class="mx-1 small text-danger btn btn-link btn-sm"
+                                    <button button class="mx-1 small text-error btn btn-link btn-sm"
                                         wire:click="delete({{ $item->id }})"
                                         wire:confirm="Are you sure you want to delete this item?">Delete</button>
                                 </div>
