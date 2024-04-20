@@ -1,5 +1,5 @@
 <div class="container pb-4 pt-5 mt-5">
-    <div class="card w-full shadow-xl" style="background: #1f2937">
+    <div class="card w-full lg:w-1/2 shadow-xl" style="background: #1f2937">
         <div class="card-body">
             <h2 class="card-title pb-4">
                 {{ $isEditMode ? 'Edit' : 'Create' }} Base Information

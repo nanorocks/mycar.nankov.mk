@@ -4,14 +4,15 @@
             <div class="btn btn-sm small">Base Information</div>
             @if ($isEditMode)
                 <div>
-                    <a href="{{ route('dashboard') }}" class="btn btn-sm btn-link small">Go back</a>
-                    <button class="btn btn-sm btn-link small" onclick="window.location.reload()">Create new</button>
+                    <a href="{{ route('dashboard') }}" class="btn btn-sm btn-link px-3">Go back</a>
+                    <button class="btn btn-sm btn-link px-0" onclick="window.location.reload()">Create new</button>
                 </div>
             @endif
         </div>
-        <a href="{{ route('base.information.manager') }}" class="btn btn-sm btn-primary small">Content
-            Manager</a>
-
+        @if (!$isEditMode)
+            <a href="{{ route('base.information.manager') }}" class="btn btn-sm btn-primary small">Content
+                Manager</a>
+        @endif
     </div>
 
     <div class="overflow-x-auto">
