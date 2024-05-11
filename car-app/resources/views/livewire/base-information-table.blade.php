@@ -19,7 +19,9 @@
         <table class="table text-center">
             <thead>
                 <tr>
-                    <th scope="col"></th>
+                    @if ($isEditMode)
+                        <th scope="col">Order</th>
+                    @endif
                     <th scope="col">Attribute</th>
                     <th scope="col">Value</th>
                     @if ($isEditMode)
@@ -27,20 +29,34 @@
                     @endif
                 </tr>
             </thead>
-            <tbody>
+            <tbody wire:sortable="updateItemOrder">
                 @if ($services->isEmpty())
                     <tr>
                         <td colspan="3">No data entry...</td>
                     </tr>
                 @endif
 
-                @foreach ($services as $key => $item)
-                    <tr wire:key="{{ $item->id }}">
-                        <td>{{ $key + 1 }}</td>
+                @foreach ($services as $item)
+                    <tr wire:sortable.item="{{ $item->id }}" wire:key="service-{{ $item->id }}">
+                        @if ($isEditMode)
+                            <td wire:sortable.handle>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-move cursor-pointer mx-auto justify-center text-success">
+                                    <polyline points="5 9 2 12 5 15"></polyline>
+                                    <polyline points="9 5 12 2 15 5"></polyline>
+                                    <polyline points="15 19 12 22 9 19"></polyline>
+                                    <polyline points="19 9 22 12 19 15"></polyline>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                </svg>
+                            </td>
+                        @endif
                         <td>{{ $item->attribute }}</td>
                         <td>{{ $item->value }}</td>
                         @if ($isEditMode)
-                            <th>
+                            <td>
                                 <div class="d-flex">
                                     <button class="mx-1 small text-success btn btn-link btn-sm"
                                         wire:click="edit({{ $item->id }})">Edit</button>
@@ -48,7 +64,7 @@
                                         wire:click="delete({{ $item->id }})"
                                         wire:confirm="Are you sure you want to delete this item?">Delete</button>
                                 </div>
-                            </th>
+                            </td>
                         @endif
                     </tr>
                 @endforeach

@@ -14,8 +14,6 @@ class ServiceHistoryTable extends Component
 
     public VehicleServiceHistory $item;
 
-    public $services;
-
     public function new()
     {
         $this->dispatch('new.service.history');
@@ -33,14 +31,22 @@ class ServiceHistoryTable extends Component
         $this->dispatch('update.service.history');
     }
 
-    #[On('update.service.history')]
-    public function mount()
+    public function updateItemOrder(array $items)
     {
-        $this->services = Auth::user()->vehicle->vehicleServicesHistory;
+        $vehicle = Auth::user()->vehicle;
+
+        foreach ($items as $item) {
+            VehicleServiceHistory::where(VehicleServiceHistory::R_VEHICLE_ID, $vehicle->id)
+                ->where(VehicleServiceHistory::ID, $item['value'])
+                ->update([VehicleServiceHistory::ORDER => $item[VehicleServiceHistory::ORDER]]);
+        }
     }
 
+    #[On('update.service.history')]
     public function render()
     {
-        return view('livewire.service-history-table');
+        $services = Auth::user()->vehicle->vehicleServicesHistory->sortBy(VehicleServiceHistory::ORDER);
+
+        return view('livewire.service-history-table', compact('services'));
     }
 }

@@ -9,6 +9,23 @@ class Vehicle extends Model
 {
     use HasFactory;
 
+    public const TABLE = 'vehicles';
+
+    public const ID = 'id';
+    public const NAME = 'name';
+    public const VEHICLE_REGISTER_NUMBER = 'vehicle_register_number';
+    public const OTHER = 'other';
+    public const R_USER_ID = 'user_id';
+
+    protected $table = self::TABLE;
+
+    protected $fillable = [
+        self::NAME,
+        self::VEHICLE_REGISTER_NUMBER,
+        self::OTHER,
+        self::R_USER_ID,
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

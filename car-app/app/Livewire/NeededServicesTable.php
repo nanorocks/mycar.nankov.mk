@@ -13,8 +13,6 @@ class NeededServicesTable extends Component
 
     public VehicleNeededService $item;
 
-    public $services;
-
     public function new()
     {
         $this->dispatch('new.needed.service');
@@ -32,15 +30,22 @@ class NeededServicesTable extends Component
         $this->dispatch('update.needed.service');
     }
 
-    #[On('update.needed.service')]
-    public function mount()
+    public function updateItemOrder(array $items)
     {
-        $this->services = Auth::user()->vehicle->vehicleNeededServices;
+        $vehicle = Auth::user()->vehicle;
+
+        foreach ($items as $item) {
+            VehicleNeededService::where(VehicleNeededService::R_VEHICLE_ID, $vehicle->id)
+                ->where(VehicleNeededService::ID, $item['value'])
+                ->update([VehicleNeededService::ORDER => $item[VehicleNeededService::ORDER]]);
+        }
     }
 
-
+    #[On('update.needed.service')]
     public function render()
     {
-        return view('livewire.needed-services-table');
+        $services = Auth::user()->vehicle->vehicleNeededServices->sortBy(VehicleNeededService::ORDER);
+
+        return view('livewire.needed-services-table', compact('services'));
     }
 }

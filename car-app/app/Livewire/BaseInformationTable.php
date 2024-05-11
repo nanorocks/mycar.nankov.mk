@@ -13,8 +13,6 @@ class BaseInformationTable extends Component
 
     public VehicleAttribute $item;
 
-    public $services;
-
     public function new()
     {
         $this->dispatch('new.base.information');
@@ -32,14 +30,22 @@ class BaseInformationTable extends Component
         $this->dispatch('update.base.information');
     }
 
-    #[On('update.base.information')]
-    public function mount()
+    public function updateItemOrder(array $items)
     {
-        $this->services = Auth::user()->vehicle->vehicleAttributes;
+        $vehicle = Auth::user()->vehicle;
+
+        foreach ($items as $item) {
+            VehicleAttribute::where(VehicleAttribute::R_VEHICLE_ID, $vehicle->id)
+                ->where(VehicleAttribute::ID, $item['value'])
+                ->update([VehicleAttribute::ORDER => $item[VehicleAttribute::ORDER]]);
+        }
     }
 
+    #[On('update.base.information')]
     public function render()
     {
-        return view('livewire.base-information-table');
+        $services = Auth::user()->vehicle->vehicleAttributes->sortBy(VehicleAttribute::ORDER);
+
+        return view('livewire.base-information-table', compact('services'));
     }
 }

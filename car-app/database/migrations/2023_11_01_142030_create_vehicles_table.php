@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -11,16 +13,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vehicles', function (Blueprint $table) {
+        Schema::create(Vehicle::TABLE, function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('vehicle_register_number');
-            $table->text('other');
+            $table->string(Vehicle::NAME);
+            $table->string(Vehicle::VEHICLE_REGISTER_NUMBER);
+            $table->text(Vehicle::OTHER);
 
-            $table->unsignedBigInteger('user_id'); // Change to unsignedBigInteger for consistency
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
+            $table->unsignedBigInteger(Vehicle::R_USER_ID); // Change to unsignedBigInteger for consistency
+            $table->foreign(Vehicle::R_USER_ID)
+                ->references(User::ID)
+                ->on(User::TABLE)
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vehicles');
+        Schema::dropIfExists(Vehicle::TABLE);
     }
 };

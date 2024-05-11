@@ -20,6 +20,9 @@
         <table class="table text-center">
             <thead>
                 <tr>
+                    @if ($isEditMode)
+                        <th scope="col">Order</th>
+                    @endif
                     <th>Date</th>
                     <th>Service Type</th>
                     <th>Description</th>
@@ -29,15 +32,30 @@
                     @endif
                 </tr>
             </thead>
-            <tbody>
+            <tbody wire:sortable="updateItemOrder">
                 @if ($services->isEmpty())
                     <tr>
-                        <td colspan="5">No data entry...</td>
+                        <td colspan="6">No data entry...</td>
                     </tr>
                 @endif
 
                 @foreach ($services as $item)
-                    <tr wire:key="{{ $item->id }}">
+                    <tr wire:sortable.item="{{ $item->id }}" wire:key="h-service-{{ $item->id }}">
+                        @if ($isEditMode)
+                            <td wire:sortable.handle>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-move cursor-pointer mx-auto justify-center text-success">
+                                    <polyline points="5 9 2 12 5 15"></polyline>
+                                    <polyline points="9 5 12 2 15 5"></polyline>
+                                    <polyline points="15 19 12 22 9 19"></polyline>
+                                    <polyline points="19 9 22 12 19 15"></polyline>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <line x1="12" y1="2" x2="12" y2="22"></line>
+                                </svg>
+                            </td>
+                        @endif
                         <td>{{ $item->date }}</td>
                         <td>{{ $item->service_type }}</td>
                         <td>{{ $item->description }}</td>

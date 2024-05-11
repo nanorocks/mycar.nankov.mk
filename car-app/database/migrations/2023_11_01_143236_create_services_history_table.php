@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Vehicle;
+use App\Models\VehicleServiceHistory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,18 +13,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services_history', function (Blueprint $table) {
+        Schema::create(VehicleServiceHistory::TABLE, function (Blueprint $table) {
             $table->id();
 
-            $table->string('date');
-            $table->string('service_type');
-            $table->string('description');
-            $table->string('cost');
+            $table->string(VehicleServiceHistory::DATE);
+            $table->string(VehicleServiceHistory::SERVICE_TYPE);
+            $table->string(VehicleServiceHistory::DESCRIPTION);
+            $table->string(VehicleServiceHistory::COST);
 
-            $table->unsignedBigInteger('vehicle_id');
-            $table->foreign('vehicle_id')
-                ->references('id')
-                ->on('vehicles')
+            $table->unsignedBigInteger(VehicleServiceHistory::R_VEHICLE_ID);
+            $table->foreign(VehicleServiceHistory::R_VEHICLE_ID)
+                ->references(Vehicle::ID)
+                ->on(Vehicle::TABLE)
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
@@ -35,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services_history');
+        Schema::dropIfExists(VehicleServiceHistory::TABLE);
     }
 };
