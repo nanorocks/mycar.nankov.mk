@@ -25,10 +25,10 @@ class VehicleServiceHistory extends Model
     protected $fillable = [
         self::DATE,
         self::SERVICE_TYPE,
-        self::SERVICE_TYPE,
         self::COST,
         self::R_VEHICLE_ID,
-        self::ORDER
+        self::ORDER,
+        self::DESCRIPTION
     ];
 
     protected static function boot()

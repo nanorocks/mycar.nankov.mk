@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SSOController;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SSOController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/sso/login', [SSOController::class, 'login'])->name('login');
 
+Route::get('/app/telescope/prune', function () {
+    return Artisan::call('telescope:prune-entries');
+});
+
 Route::get('/redirect', [SSOController::class, 'redirect'])->name('sso.redirect');
 
 Route::get('/auth/callback', [SSOController::class, 'callback'])->name('sso.token');
@@ -47,6 +52,6 @@ Route::get('/auth/callback', [SSOController::class, 'callback'])->name('sso.toke
 Route::get('/user/profile', [SSOController::class, 'profile'])->name('sso.profile');
 
 Route::post('logout', [SSOController::class, 'logout'])
-->name('logout');
+    ->name('logout');
 
 require __DIR__ . '/auth.php';

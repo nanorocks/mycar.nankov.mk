@@ -39,6 +39,7 @@
         </div>
         <div class="flex-1">
             <a class="btn btn-ghost text-xl" href="{{ route('dashboard') }}">My Car</a>
+            <a class="btn btn-ghost text-normal" href="{{ route('telescope') }}">Telescope</a>
         </div>
         <div class="flex-none">
             <button class="btn btn-square btn-ghost">
