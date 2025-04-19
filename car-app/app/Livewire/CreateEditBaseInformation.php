@@ -37,6 +37,7 @@ class CreateEditBaseInformation extends Component
     #[On('new.base.information')]
     public function new()
     {
+        // Reset the form
         $this->form->reset();
 
         $this->isEditMode = false;
