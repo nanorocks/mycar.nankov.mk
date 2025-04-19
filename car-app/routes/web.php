@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SSOController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +19,19 @@ use App\Http\Controllers\DashboardController;
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/', [DashboardController::class, 'index'])
+    Route::get('/', [HomeController::class, 'index'])
         ->name('dashboard');
 
-    Route::get('/service-history-manager', [DashboardController::class, 'serviceHistoryManager'])
+    Route::get('/vehicles/{id}', [HomeController::class, 'vehicles'])
+    ->name('vehicles.show');
+
+    Route::get('/service-history-manager', [HomeController::class, 'serviceHistoryManager'])
         ->name('service.history.manager');
 
-    Route::get('/needed-service-manager', [DashboardController::class, 'neededServiceManager'])
+    Route::get('/needed-service-manager', [HomeController::class, 'neededServiceManager'])
         ->name('needed.service.manager');
 
-    Route::get('/base-information-manager', [DashboardController::class, 'baseInformationManager'])
+    Route::get('/base-information-manager', [HomeController::class, 'baseInformationManager'])
         ->name('base.information.manager');
 
 

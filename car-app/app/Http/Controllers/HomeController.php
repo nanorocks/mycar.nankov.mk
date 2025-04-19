@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
-class DashboardController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
@@ -26,6 +26,13 @@ class DashboardController extends Controller
     public function baseInformationManager()
     {
         return view('base-information-manager');
+    }
+
+    public function vehicles(int $id)
+    {
+        return view('vehicles' , [
+            'vehicleId' => $id,
+        ]);
     }
 
     public function logout(Request $request): RedirectResponse

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Vehicle;
 use App\Models\VehicleServiceHistory;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -9,10 +10,16 @@ use Livewire\Attributes\On;
 
 class ServiceHistoryTable extends Component
 {
-
     public bool $isEditMode = false;
 
     public VehicleServiceHistory $item;
+
+    public $vehicleId;
+ 
+    public function mount($vehicleId)
+    {
+        $this->vehicleId = $vehicleId;
+    }
 
     public function new()
     {
@@ -45,7 +52,7 @@ class ServiceHistoryTable extends Component
     #[On('update.service.history')]
     public function render()
     {
-        $services = Auth::user()->vehicle->vehicleServicesHistory->sortBy(VehicleServiceHistory::ORDER);
+        $services = Vehicle::find($this->vehicleId)->vehicleServicesHistory->sortBy(VehicleServiceHistory::ORDER);
 
         return view('livewire.service-history-table', compact('services'));
     }

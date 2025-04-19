@@ -17,6 +17,12 @@ class Vehicle extends Model
     public const OTHER = 'other';
     public const R_USER_ID = 'user_id';
 
+    // Relationship constants
+    public const RELATION_ATTRIBUTES = 'vehicleAttributes';
+    public const RELATION_NEEDED_SERVICES = 'vehicleNeededServices';
+    public const RELATION_SERVICE_HISTORY = 'vehicleServicesHistory';
+   
+
     protected $table = self::TABLE;
 
     protected $fillable = [

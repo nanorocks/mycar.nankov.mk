@@ -3,6 +3,7 @@ version: '3.1'
 services:
   mycar:
     container_name: mycar-php
+    user: "${UID}:${GID}" # Use the host user's UID and GID to avoid permission issues
     build:
       context: .
       dockerfile: .docker/Dockerfile
@@ -11,7 +12,13 @@ services:
     ports:
       - 80:80
     volumes:
-       - ./car-app:/var/www/html
+      - ./car-app:/var/www/html
+      - ./car-app/storage:/var/www/html/storage
+      - ./car-app/bootstrap/cache:/var/www/html/bootstrap/cache # Ensure bootstrap/cache is writable
+    environment:
+      # Pass UID and GID to the container
+      UID: "${UID}"
+      GID: "${GID}"
 
   database:
     container_name: mycar-db
@@ -21,6 +28,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: secret
+      MYSQL_ROOT_HOST: '%'
 
   database-client:
     container_name: mycar-adminer
@@ -34,10 +42,11 @@ services:
     ports:
       - 54320:8080
 
-  mailhog:
-    container_name: mycar-mailhog
-    image: mailhog/mailhog:latest
-    restart: always
-    ports:
-      - 1025:1025
-      - 8025:8025    
+  # Uncomment if you need Mailhog for email testing
+  # mailhog:
+  #   container_name: mycar-mailhog
+  #   image: mailhog/mailhog:latest
+  #   restart: always
+  #   ports:
+  #     - 1025:1025
+  #     - 8025:8025

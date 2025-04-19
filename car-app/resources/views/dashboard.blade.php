@@ -1,20 +1,10 @@
 <x-app-layout>
     <main>
-        <div class="grid lg:grid-cols-2 pb-4 gap-4 md:grid-cols-2 sm:grid-cols-1 grid-cols-1 lg:mb-4 md:mb-4">
-            <livewire:vehicle />
-
-            <div class="my-4 sm:pt-2 pt-0">
-                <livewire:base-information-table />
-            </div>
+        <div class="container">
+            <h1 class="text-2xl font-bold text-center pt-8">Welcome to the Vehicle Management System</h1>
+            <p class="text-center text-gray-600">Manage your vehicles efficiently and effectively.</p>
         </div>
-
-        <div class="container pb-4">
-            <livewire:needed-services-table />
-        </div>
-
-        <div class="container my-4">
-            <livewire:service-history-table />
-        </div>
+        <livewire:add-new-vehicle />
+        <livewire:vehicles />
     </main>
-
 </x-app-layout>

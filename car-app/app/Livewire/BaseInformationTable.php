@@ -2,16 +2,24 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
+use App\Models\Vehicle;
 use App\Models\VehicleAttribute;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class BaseInformationTable extends Component
 {
     public bool $isEditMode = false;
 
     public VehicleAttribute $item;
+
+    public $vehicleId;
+ 
+    public function mount($vehicleId)
+    {
+        $this->vehicleId = $vehicleId;
+    }
 
     public function new()
     {
@@ -44,8 +52,8 @@ class BaseInformationTable extends Component
     #[On('update.base.information')]
     public function render()
     {
-        $services = Auth::user()->vehicle->vehicleAttributes->sortBy(VehicleAttribute::ORDER);
-
+        $services = Vehicle::find($this->vehicleId)->vehicleAttributes->sortBy(VehicleAttribute::ORDER);
+       
         return view('livewire.base-information-table', compact('services'));
     }
 }

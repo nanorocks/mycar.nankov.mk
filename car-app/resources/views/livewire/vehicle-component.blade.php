@@ -5,8 +5,6 @@
     <div class="card-body">
         <h2 class="card-title">{{ $vehicle->name }}</h2>
         <p>{{ $vehicle->vehicle_register_number }}</p>
-        {{-- <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
-        </div> --}}
     </div>
 </div>
+    

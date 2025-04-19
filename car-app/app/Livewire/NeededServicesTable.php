@@ -2,16 +2,24 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
+use App\Models\Vehicle;
 use App\Models\VehicleNeededService;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class NeededServicesTable extends Component
 {
     public bool $isEditMode = false;
 
     public VehicleNeededService $item;
+
+    public $vehicleId;
+ 
+    public function mount($vehicleId)
+    {
+        $this->vehicleId = $vehicleId;
+    }
 
     public function new()
     {
@@ -44,7 +52,7 @@ class NeededServicesTable extends Component
     #[On('update.needed.service')]
     public function render()
     {
-        $services = Auth::user()->vehicle->vehicleNeededServices->sortBy(VehicleNeededService::ORDER);
+        $services = Vehicle::find($this->vehicleId)->vehicleNeededServices->sortBy(VehicleNeededService::ORDER);
 
         return view('livewire.needed-services-table', compact('services'));
     }
