@@ -4,7 +4,7 @@
             <h2 class="card-title pb-4">
                 {{ $isEditMode ? 'Edit' : 'Create' }} Service History
             </h2>
-            <form wire:submit="{{ $isEditMode ? 'update' : 'add' }}">
+            <form wire:submit="{{ $isEditMode ? 'update' : 'add(' . $vehicleId . ')' }}">
                 @csrf
                 <input wire:model="form.vehicle_id" type="hidden"
                     class="form-control @error('form.vehicle_id') is-invalid @enderror" id="date"

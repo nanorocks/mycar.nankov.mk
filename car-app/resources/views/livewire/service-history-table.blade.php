@@ -10,7 +10,8 @@
             @endif
         </div>
         @if (!$isEditMode)
-            <a href="{{ route('service.history.manager') }}" class="btn btn-sm btn-primary small">Content
+            <a href="{{ route('service.history.manager', ['id' => $vehicleId]) }}"
+                class="btn btn-sm btn-primary small">Content
                 Manager</a>
         @endif
     </div>

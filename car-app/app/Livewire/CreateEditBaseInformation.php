@@ -16,6 +16,13 @@ class CreateEditBaseInformation extends Component
 
     public VehicleAttribute $service;
 
+    public $vehicleId;
+ 
+    public function mount($vehicleId)
+    {
+        $this->vehicleId = $vehicleId;
+    }
+
     public function update()
     {
         $this->validate();
@@ -37,7 +44,7 @@ class CreateEditBaseInformation extends Component
 
     public function add()
     {
-        $this->form->vehicle_id = Auth::user()->vehicle->id;
+        $this->form->vehicle_id = $this->vehicleId;
 
         $this->validate();
 

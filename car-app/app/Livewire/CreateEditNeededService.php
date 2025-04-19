@@ -17,6 +17,13 @@ class CreateEditNeededService extends Component
 
     public VehicleServiceHistory $service;
 
+    public $vehicleId;
+ 
+    public function mount($vehicleId)
+    {
+        $this->vehicleId = $vehicleId;
+    }
+
     public function update()
     {
         $this->validate();
@@ -38,7 +45,7 @@ class CreateEditNeededService extends Component
 
     public function add()
     {
-        $this->form->vehicle_id = Auth::user()->vehicle->id;
+         $this->form->vehicle_id = $this->vehicleId;
 
         $this->validate();
 

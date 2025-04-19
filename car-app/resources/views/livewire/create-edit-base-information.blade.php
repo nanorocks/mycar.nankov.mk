@@ -5,7 +5,7 @@
                 {{ $isEditMode ? 'Edit' : 'Create' }} Base Information
             </h2>
 
-            <form wire:submit="{{ $isEditMode ? 'update' : 'add' }}">
+            <form wire:submit="{{ $isEditMode ? 'update' : 'add(' . $vehicleId . ')' }}">
                 @csrf
                 <div class="pb-4">
                     <x-input-label for="date">Attribute</x-input-label>

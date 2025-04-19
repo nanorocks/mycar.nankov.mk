@@ -25,13 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/vehicles/{id}', [HomeController::class, 'vehicles'])
     ->name('vehicles.show');
 
-    Route::get('/service-history-manager', [HomeController::class, 'serviceHistoryManager'])
+    Route::get('/vehicles/{id}/service-history-manager', [HomeController::class, 'serviceHistoryManager'])
         ->name('service.history.manager');
 
-    Route::get('/needed-service-manager', [HomeController::class, 'neededServiceManager'])
+    Route::get('/vehicles/{id}/needed-service-manager', [HomeController::class, 'neededServiceManager'])
         ->name('needed.service.manager');
 
-    Route::get('/base-information-manager', [HomeController::class, 'baseInformationManager'])
+    Route::get('/vehicles/{id}/base-information-manager', [HomeController::class, 'baseInformationManager'])
         ->name('base.information.manager');
 
 

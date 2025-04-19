@@ -40,7 +40,7 @@ class NeededServicesTable extends Component
 
     public function updateItemOrder(array $items)
     {
-        $vehicle = Auth::user()->vehicle;
+        $vehicle = Vehicle::findOrFail($this->vehicleId);
 
         foreach ($items as $item) {
             VehicleNeededService::where(VehicleNeededService::R_VEHICLE_ID, $vehicle->id)

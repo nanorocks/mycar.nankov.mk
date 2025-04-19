@@ -13,19 +13,25 @@ class HomeController extends Controller
         return view('dashboard');
     }
 
-    public function serviceHistoryManager()
+    public function serviceHistoryManager(int $id)
     {
-        return view('service-history-manager');
+        return view('service-history-manager', [
+            'vehicleId' => $id,
+        ]);
     }
 
-    public function neededServiceManager()
+    public function neededServiceManager(int $id)
     {
-        return view('needed-service-manager');
+        return view('needed-service-manager', [
+            'vehicleId' => $id,
+        ]);
     }
 
-    public function baseInformationManager()
+    public function baseInformationManager(int $id)
     {
-        return view('base-information-manager');
+        return view('base-information-manager', [
+            'vehicleId' => $id,
+        ]);
     }
 
     public function vehicles(int $id)

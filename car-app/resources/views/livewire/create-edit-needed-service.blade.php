@@ -5,7 +5,7 @@
                 {{ $isEditMode ? 'Edit' : 'Create' }} Needed Service
             </h2>
 
-            <form wire:submit="{{ $isEditMode ? 'update' : 'add' }}">
+            <form wire:submit="{{ $isEditMode ? 'update' : 'add(' . $vehicleId . ')' }}">
                 @csrf
 
                 <input wire:model="form.vehicle_id" type="hidden"

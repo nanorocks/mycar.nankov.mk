@@ -40,7 +40,7 @@ class BaseInformationTable extends Component
 
     public function updateItemOrder(array $items)
     {
-        $vehicle = Auth::user()->vehicle;
+        $vehicle = Vehicle::findOrFail($this->vehicleId);
 
         foreach ($items as $item) {
             VehicleAttribute::where(VehicleAttribute::R_VEHICLE_ID, $vehicle->id)
