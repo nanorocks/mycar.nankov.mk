@@ -25,10 +25,60 @@
                     @if ($isEditMode)
                         <th scope="col">Order</th>
                     @endif
-                    <th>Date</th>
+                    <th class="text-center align-middle">
+                        <div class="flex flex-col items-center">
+                            <button wire:click="toggleSortOrder('date')" class="flex items-center justify-center gap-1">
+                                Date
+                                @if ($sortField === 'date' && $sortOrder === 'asc')
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 12a.5.5 0 0 1-.5-.5V3.707L5.354 6.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 3.707V11.5a.5.5 0 0 1-.5.5z" />
+                                    </svg>
+                                @elseif ($sortField === 'date' && $sortOrder === 'desc')
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 4a.5.5 0 0 1 .5.5v7.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1-.708-.708L7.5 12.293V4.5A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 4a.5.5 0 0 1 .5.5v7.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1-.708-.708L7.5 12.293V4.5A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                @endif
+                            </button>
+                        </div>
+                    </th>
                     <th>Service Type</th>
                     <th>Description</th>
-                    <th>Cost</th>
+                    <th class="text-center align-middle">
+                        <div class="flex flex-col items-center">
+                            <button wire:click="toggleSortOrder('cost')" class="flex items-center justify-center gap-1">
+                                Cost
+                                @if ($sortField === 'cost' && $sortOrder === 'asc')
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 12a.5.5 0 0 1-.5-.5V3.707L5.354 6.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 3.707V11.5a.5.5 0 0 1-.5.5z" />
+                                    </svg>
+                                @elseif ($sortField === 'cost' && $sortOrder === 'desc')
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 4a.5.5 0 0 1 .5.5v7.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1-.708-.708L7.5 12.293V4.5A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 4a.5.5 0 0 1 .5.5v7.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1-.708-.708L7.5 12.293V4.5A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                @endif
+                            </button>
+                        </div>
+                    </th>
                     @if ($isEditMode)
                         <th>Actions</th>
                     @endif
@@ -73,8 +123,7 @@
                                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                                         </svg></button>
-                                    <button button class="small text-error"
-                                        wire:click="delete({{ $item->id }})"
+                                    <button button class="small text-error" wire:click="delete({{ $item->id }})"
                                         wire:confirm="Are you sure you want to delete this item?"> <svg
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
                                             height="24" class="main-grid-item-icon" fill="none"

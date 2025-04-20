@@ -4,7 +4,7 @@
 
     <!-- Modal -->
     @if ($isModalOpen)
-        <div class="modal modal-open">
+        <div class="modal modal-open" style="background: #1f2937">
             <div class="modal-box p-0">
                 <div class="card w-full shadow-xl" style="background: #1f2937">
                     <div class="card-body">

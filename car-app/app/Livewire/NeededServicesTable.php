@@ -15,6 +15,8 @@ class NeededServicesTable extends Component
     public VehicleNeededService $item;
 
     public $vehicleId;
+
+    public string | null $sortOrder = null;
  
     public function mount($vehicleId)
     {
@@ -49,10 +51,24 @@ class NeededServicesTable extends Component
         }
     }
 
+    public function toggleSortOrder()
+    {
+        $this->sortOrder = $this->sortOrder === 'asc' ? 'desc' : 'asc';
+    }
+
     #[On('update.needed.service')]
     public function render()
     {
-        $services = Vehicle::find($this->vehicleId)->vehicleNeededServices->sortBy(VehicleNeededService::ORDER);
+        $services = Vehicle::find($this->vehicleId)->vehicleNeededServices;
+
+        // Default sorting by VehicleNeededService::ORDER
+        if ($this->sortOrder === 'asc' || $this->sortOrder === 'desc') {
+            $services = $this->sortOrder === 'asc'
+                ? $services->sortBy('date')
+                : $services->sortByDesc('date');
+        } else {
+            $services = $services->sortBy(VehicleNeededService::ORDER);
+        }
 
         return view('livewire.needed-services-table', compact('services'));
     }

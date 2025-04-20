@@ -15,7 +15,10 @@ class ServiceHistoryTable extends Component
     public VehicleServiceHistory $item;
 
     public $vehicleId;
- 
+
+    public string | null $sortOrder = null; // Tracks sorting order (asc/desc)
+    public string $sortField = 'date'; // Tracks the field to sort by (default: date)
+
     public function mount($vehicleId)
     {
         $this->vehicleId = $vehicleId;
@@ -49,10 +52,28 @@ class ServiceHistoryTable extends Component
         }
     }
 
+    public function toggleSortOrder($field)
+    {
+        // Toggle the sort order
+        $this->sortOrder = $this->sortOrder === 'asc' ? 'desc' : 'asc';
+
+        // Set the field to sort by
+        $this->sortField = $field;
+    }
+
     #[On('update.service.history')]
     public function render()
     {
-        $services = Vehicle::find($this->vehicleId)->vehicleServicesHistory->sortBy(VehicleServiceHistory::ORDER);
+        $services = Vehicle::find($this->vehicleId)->vehicleServicesHistory;
+
+        // Apply sorting
+        if ($this->sortOrder === 'asc' || $this->sortOrder === 'desc') {
+            $services = $this->sortOrder === 'asc'
+                ? $services->sortBy($this->sortField)
+                : $services->sortByDesc($this->sortField);
+        } else {
+            $services = $services->sortBy(VehicleServiceHistory::ORDER);
+        }
 
         return view('livewire.service-history-table', compact('services'));
     }
