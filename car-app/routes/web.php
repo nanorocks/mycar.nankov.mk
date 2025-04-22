@@ -5,6 +5,7 @@ use App\Http\Controllers\SSOController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/sso/login', [SSOController::class, 'login'])->name('login');
+Route::get('/sso/login', [SSOController::class, 'login'])->name('login')->middleware('guest');
 
 Route::get('/app/telescope/prune', function () {
     return Artisan::call('telescope:prune-entries');
@@ -56,5 +57,8 @@ Route::get('/user/profile', [SSOController::class, 'profile'])->name('sso.profil
 
 Route::post('logout', [SSOController::class, 'logout'])
     ->name('logout');
+
+Route::get('/auth/github/callback', [SocialiteController::class, 'handleGithubCallback'])->name('github.token');
+Route::get('/auth/github', [SocialiteController::class, 'redirectToGitHub'])->name('github.redirect');
 
 require __DIR__ . '/auth.php';

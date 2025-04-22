@@ -77,20 +77,22 @@ class SSOController extends Controller
 
     public function logout(Request $request)
     {
-        $authTokenData = Session::get('authTokenData');
+        // $authTokenData = Session::get('authTokenData');
 
         // $response = Http::withHeaders([
         //     'Accept' => 'application/json',
         //     'Authorization' => sprintf('%s %s', $authTokenData['token_type'], $authTokenData['access_token']),
         // ])->post(config('auth.sso_url') . '/api/logout');
 
-        Session::flash('authTokenData');
+        // Session::flash('authTokenData');
 
-        Auth::guard('web')->logout();
+        // Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken();
+
+        Auth::logout();
 
         return redirect('/');
     }

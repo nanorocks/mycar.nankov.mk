@@ -104,18 +104,11 @@
 
 
                         <!-- https://feathericons.dev/?search=mail&iconset=feather -->
-
-
-
-
-
                         <li>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('logout') }}" onclick="this.submit();">
                                 @csrf
 
-                                <a href="route('logout')" class="flex items-center gap-2"
-                                    onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
+                                <button type="button" class="flex items-center gap-2 w-full">
                                     <!-- https://feathericons.dev/?search=log-out&iconset=feather -->
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24"
                                         height="24" class="main-grid-item-icon" fill="none" stroke="currentColor"
@@ -124,9 +117,8 @@
                                         <polyline points="16 17 21 12 16 7" />
                                         <line x1="21" x2="9" y1="12" y2="12" />
                                     </svg>
-
-                                    {{ __('Log Out') }}
-                                </a>
+                                    <span>{{ __('Log Out') }}</span>
+                                </button>
                             </form>
                         </li>
                     </ul>
