@@ -15,28 +15,30 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-        <div class="flex justify-center">
+<body class="font-sans text-gray-900 antialiased bg-base-200">
+    <div class="min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0">
+        <div class="flex justify-center mb-6">
             <a href="/">
-                {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
-
-                <img src="{{ asset('img/logo.png') }}" style="width: 320px; border-radius: 30px;" />
+                <img src="{{ asset('img/logo.png') }}" class="w-40 rounded-lg shadow-lg" alt="Logo" />
             </a>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center mb-4">
             <ul id="version"
-                style="display:inline-flex; font-size: x-small; list-style-type: none; z-index: 1000; margin: 0; padding: 5px; background-color: #1f2937; color: white; border-radius: 5px; box-shadow: 0px 0px 5px rgba(0,0,0,0.2);">
-                <li style="display: inline; margin-right: 10px;">PHP: {{ phpversion() }}</li>
-                <li style="display: inline;">Laravel: {{ app()->version() }}</li>
+                class="inline-flex text-sm list-none z-10 m-0 p-2 bg-neutral text-neutral-content rounded-lg shadow">
+                <li class="mr-4">PHP: {{ phpversion() }}</li>
+                <li>Laravel: {{ app()->version() }}</li>
             </ul>
         </div>
-        <div class="flex justify-center">
-            {{ $slot }}
+        <div class="w-full">
+            <div>
+                {{ $slot }}
+            </div>
         </div>
         @if (session('error'))
-            <div class="mt-4 px-4 py-2 bg-red-500 text-white rounded">
-                {{ session('error') }}
+            <div class="alert alert-error mt-4">
+                <div>
+                    <span>{{ session('error') }}</span>
+                </div>
             </div>
         @endif
     </div>

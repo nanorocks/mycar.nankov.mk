@@ -67,12 +67,12 @@ class SSOController extends Controller
 
             Session::put('authTokenData', $authTokenData);
 
-            return redirect('/');
+            return redirect()->route('dashboard');
         } catch (Exception $e) {
             return new Exception($e->getMessage());
         }
 
-        return redirect('/');
+        return redirect()->route('dashboard');
     }
 
     public function logout(Request $request)

@@ -1,64 +1,51 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SSOController;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\{
+    SSOController,
+    ProfileController,
+    HomeController,
+    SocialiteController
+};
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+// Authenticated routes
 Route::middleware('auth')->group(function () {
+    Route::redirect('/', '/dashboard');
 
-    Route::get('/', [HomeController::class, 'index'])
-        ->name('dashboard');
+    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
-    Route::get('/vehicles/{id}', [HomeController::class, 'vehicles'])
-    ->name('vehicles.show');
+    Route::prefix('vehicles/{id}')->group(function () {
+        Route::get('/', [HomeController::class, 'vehicles'])->name('vehicles.show');
+        Route::get('/service-history-manager', [HomeController::class, 'serviceHistoryManager'])->name('service.history.manager');
+        Route::get('/needed-service-manager', [HomeController::class, 'neededServiceManager'])->name('needed.service.manager');
+        Route::get('/base-information-manager', [HomeController::class, 'baseInformationManager'])->name('base.information.manager');
+    });
 
-    Route::get('/vehicles/{id}/service-history-manager', [HomeController::class, 'serviceHistoryManager'])
-        ->name('service.history.manager');
-
-    Route::get('/vehicles/{id}/needed-service-manager', [HomeController::class, 'neededServiceManager'])
-        ->name('needed.service.manager');
-
-    Route::get('/vehicles/{id}/base-information-manager', [HomeController::class, 'baseInformationManager'])
-        ->name('base.information.manager');
-
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::prefix('profile')->group(function () {
+        Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
 });
 
-Route::get('/sso/login', [SSOController::class, 'login'])->name('login')->middleware('guest');
+// Guest routes
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [SSOController::class, 'login'])->name('login');
+});
 
-Route::get('/app/telescope/prune', function () {
-    return Artisan::call('telescope:prune-entries');
+// SSO routes
+Route::prefix('auth')->group(function () {
+    Route::get('/callback', [SSOController::class, 'callback'])->name('sso.token');
+    Route::get('/github/callback', [SocialiteController::class, 'handleGithubCallback'])->name('github.token');
+    Route::get('/github', [SocialiteController::class, 'redirectToGitHub'])->name('github.redirect');
 });
 
 Route::get('/redirect', [SSOController::class, 'redirect'])->name('sso.redirect');
-
-Route::get('/auth/callback', [SSOController::class, 'callback'])->name('sso.token');
-
 Route::get('/user/profile', [SSOController::class, 'profile'])->name('sso.profile');
+Route::post('/logout', [SSOController::class, 'logout'])->name('logout');
 
-Route::post('logout', [SSOController::class, 'logout'])
-    ->name('logout');
-
-Route::get('/auth/github/callback', [SocialiteController::class, 'handleGithubCallback'])->name('github.token');
-Route::get('/auth/github', [SocialiteController::class, 'redirectToGitHub'])->name('github.redirect');
+// Utility routes
+Route::get('/app/telescope/prune', fn() => Artisan::call('telescope:prune-entries'));
 
 require __DIR__ . '/auth.php';
