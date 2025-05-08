@@ -6,7 +6,8 @@ use App\Http\Controllers\{
     SSOController,
     ProfileController,
     HomeController,
-    SocialiteController
+    SocialiteController,
+    PdfController
 };
 
 // Authenticated routes
@@ -47,5 +48,7 @@ Route::post('/logout', [SSOController::class, 'logout'])->name('logout');
 
 // Utility routes
 Route::get('/app/telescope/prune', fn() => Artisan::call('telescope:prune-entries'));
+
+Route::get('/export-vehicle-pdf/{vehicleId}', [PdfController::class, 'export'])->name('export.vehicle.pdf');
 
 require __DIR__ . '/auth.php';
