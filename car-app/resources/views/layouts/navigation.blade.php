@@ -1,4 +1,4 @@
-<div class="navbar bg-transparent shadow-sm">
+<div class="navbar bg-transparent">
     <!-- Navbar Start -->
     <div class="navbar-start gap-2">
         <!-- Drawer Toggle for Small Screens -->
