@@ -37,3 +37,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
+
+# Install Node.js (LTS) and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y nodejs
+# Install Puppeteer (headless Chromium)
+RUN npm install puppeteer --omit=dev --prefix /usr/local
+
+# Make Puppeteer Chromium executable globally discoverable
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/local/node_modules/puppeteer/.local-chromium/linux-*/chrome-linux/chrome

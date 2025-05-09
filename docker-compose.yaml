@@ -1,24 +1,20 @@
-version: '3.1'
-
 services:
   mycar:
     container_name: mycar-php
-    user: "${UID}:${GID}" # Use the host user's UID and GID to avoid permission issues
     build:
       context: .
-      dockerfile: .docker/Dockerfile
-    image: 'mycar'
+      dockerfile: .docker/Dockerfile  # Ensure this path is correct
+    image: mycar
     restart: always
     ports:
       - 80:80
     volumes:
       - ./car-app:/var/www/html
       - ./car-app/storage:/var/www/html/storage
-      - ./car-app/bootstrap/cache:/var/www/html/bootstrap/cache # Ensure bootstrap/cache is writable
+      - ./car-app/bootstrap/cache:/var/www/html/bootstrap/cache
     environment:
-      # Pass UID and GID to the container
-      UID: "${UID}"
-      GID: "${GID}"
+      APP_ENV: local
+      APP_DEBUG: true
 
   database:
     container_name: mycar-db
@@ -41,12 +37,3 @@ services:
       ADMINER_PLUGINS: tables-filter tinymce
     ports:
       - 54320:8080
-
-  # Uncomment if you need Mailhog for email testing
-  # mailhog:
-  #   container_name: mycar-mailhog
-  #   image: mailhog/mailhog:latest
-  #   restart: always
-  #   ports:
-  #     - 1025:1025
-  #     - 8025:8025
