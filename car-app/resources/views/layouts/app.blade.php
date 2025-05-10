@@ -86,6 +86,17 @@
                             </svg>
 
                         </label>
+
+                        <button class="btn btn-ghost btn-circle" onclick="toggleAllMenus()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-copy-slash-icon lucide-copy-slash">
+                                <line x1="12" x2="18" y1="18" y2="12" />
+                                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                            </svg>
+                        </button>
                     </div>
 
                 </div>
@@ -110,7 +121,7 @@
                         onclick="toggleSubMenu(event, 'vehicles-menu')">
                         <!-- Vehicle Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
                             stroke-linejoin="round" class="lucide lucide-car-icon lucide-car">
                             <path
                                 d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
@@ -503,6 +514,20 @@
         });
         const menu = document.getElementById(menuId);
         menu.classList.toggle('hidden');
+    }
+
+    let areMenusExpanded = false;
+
+    function toggleAllMenus() {
+        const menus = document.querySelectorAll('.menu ul');
+        menus.forEach(menu => {
+            if (areMenusExpanded) {
+                menu.classList.add('hidden');
+            } else {
+                menu.classList.remove('hidden');
+            }
+        });
+        areMenusExpanded = !areMenusExpanded;
     }
 </script>
 
