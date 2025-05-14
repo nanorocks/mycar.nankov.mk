@@ -7,7 +7,13 @@ use App\Http\Controllers\{
     ProfileController,
     HomeController,
     SocialiteController,
-    PdfController
+    PdfController,
+    VehicleController,
+    MaintenanceController,
+    FleetManagementController,
+    FuelTrackingController,
+    ReportController,
+    DriverController
 };
 
 // Authenticated routes
@@ -27,6 +33,48 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
+    // Vehicles
+    Route::prefix('vehicles')->group(function () {
+        Route::get('/', [VehicleController::class, 'index'])->name('vehicles.index');
+        Route::get('/create', [VehicleController::class, 'create'])->name('vehicles.create');
+        Route::get('/search', [VehicleController::class, 'search'])->name('vehicles.search');
+    });
+
+    // Maintenance
+    Route::prefix('maintenance')->group(function () {
+        Route::get('/scheduled', [MaintenanceController::class, 'scheduled'])->name('maintenance.scheduled');
+        Route::get('/history', [MaintenanceController::class, 'history'])->name('maintenance.history');
+        Route::get('/add', [MaintenanceController::class, 'add'])->name('maintenance.add');
+    });
+
+    // Fleet Management
+    Route::prefix('fleet-management')->group(function () {
+        Route::get('/overview', [FleetManagementController::class, 'overview'])->name('fleet.overview');
+        Route::get('/assign-drivers', [FleetManagementController::class, 'assignDrivers'])->name('fleet.assignDrivers');
+        Route::get('/utilization', [FleetManagementController::class, 'utilization'])->name('fleet.utilization');
+    });
+
+    // Fuel Tracking
+    Route::prefix('fuel-tracking')->group(function () {
+        Route::get('/log', [FuelTrackingController::class, 'log'])->name('fuel.log');
+        Route::get('/history', [FuelTrackingController::class, 'history'])->name('fuel.history');
+        Route::get('/efficiency-report', [FuelTrackingController::class, 'efficiencyReport'])->name('fuel.efficiencyReport');
+    });
+
+    // Reports
+    Route::prefix('reports')->group(function () {
+        Route::get('/maintenance', [ReportController::class, 'maintenance'])->name('reports.maintenance');
+        Route::get('/fuel-efficiency', [ReportController::class, 'fuelEfficiency'])->name('reports.fuelEfficiency');
+        Route::get('/utilization', [ReportController::class, 'utilization'])->name('reports.utilization');
+    });
+
+    // Drivers
+    Route::prefix('drivers')->group(function () {
+        Route::get('/', [DriverController::class, 'index'])->name('drivers.index');
+        Route::get('/create', [DriverController::class, 'create'])->name('drivers.create');
+        Route::get('/performance', [DriverController::class, 'performance'])->name('drivers.performance');
     });
 });
 

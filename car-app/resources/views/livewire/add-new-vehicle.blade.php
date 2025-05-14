@@ -1,4 +1,4 @@
-<div>
+<div class="pt-4">
     <!-- Button to open the modal -->
     <button class="btn btn-primary" wire:click="openModal">Create New Vehicle</button>
 
