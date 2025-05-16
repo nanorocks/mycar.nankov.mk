@@ -1,6 +1,5 @@
 <x-app-layout>
     <main>
-
         <div class="bg-base-200 shadow rounded-xl p-4 mb-6">
             <h2 class="text-lg font-semibold mb-4">Upcoming Services</h2>
             <div class="overflow-x-auto">

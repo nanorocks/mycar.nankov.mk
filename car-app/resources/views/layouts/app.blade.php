@@ -15,7 +15,7 @@
 <body class="font-sans antialiased min-h-screen">
     <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-content flex flex-col items-center justify-center">
+        <div class="drawer-content">
             <div class="container mx-auto pb-8">
                 @if (isset($header))
                     {{ $header }}
