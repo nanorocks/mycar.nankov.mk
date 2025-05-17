@@ -14,7 +14,7 @@
 
     <!-- Navbar End -->
     <div class="navbar-end gap-2">
- 
+
         <button class="btn btn-ghost btn-circle">
             <div class="indicator">
                 <x-icons.bell />
@@ -28,16 +28,16 @@
                 <x-icons.settings />
             </label>
             <ul tabindex="0" class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
-                <li><a>
+                <li><a href="{{ route('user-management.index') }}">
                         <x-icons.user-management />
                         User Management</a></li>
-                <li><a>
+                <li><a href="{{ route('notifications.index') }}">
                         <x-icons.notifications />
                         Notifications</a></li>
-                <li><a>
+                <li><a href="{{ route('preferences.index') }}">
                         <x-icons.preferences />
                         Preferences</a></li>
-                <li><a>
+                <li><a href="{{ route('alerts.index') }}">
                         <x-icons.alerts />
                         Alerts</a></li>
             </ul>

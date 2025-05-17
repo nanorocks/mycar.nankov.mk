@@ -4,18 +4,18 @@
         <!-- Breadcrumbs -->
         <div class="breadcrumbs text-sm">
             <ul>
-            <li>
-                <a href="{{ route('dashboard') }}">
-                <x-icons.home />
-                {{ __('Dashboard') }}
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('profile.edit') }}">
-                <x-icons.profile />
-                {{ __('Profile') }}
-                </a>
-            </li>
+                <li>
+                    <a href="{{ route('dashboard') }}" class="gap-1">
+                        <x-icons.home />
+                        {{ __('Dashboard') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('profile.edit') }}" class="gap-1">
+                        <x-icons.profile />
+                        {{ __('Profile') }}
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -24,7 +24,7 @@
             {{ __('Profile') }}
         </h2>
         <p class="text-sm pb-4">
-            {{ __('Manage your profile information, update your password, or delete your account.') }}
+            {{ __('Update your profile, change your password, or remove your account securely and easily.') }}
         </p>
 
         <div class="mx-auto">

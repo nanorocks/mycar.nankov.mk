@@ -13,7 +13,11 @@ use App\Http\Controllers\{
     FleetManagementController,
     FuelTrackingController,
     ReportController,
-    DriverController
+    DriverController,
+    UserManagementController,
+    NotificationsController,
+    PreferencesController,
+    AlertsController
 };
 
 // Authenticated routes
@@ -76,6 +80,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', [DriverController::class, 'create'])->name('drivers.create');
         Route::get('/performance', [DriverController::class, 'performance'])->name('drivers.performance');
     });
+
+    Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management.index');
+    Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications.index');
+    Route::get('/preferences', [PreferencesController::class, 'index'])->name('preferences.index');
+    Route::get('/alerts', [AlertsController::class, 'index'])->name('alerts.index');
+
 });
 
 // Guest routes
