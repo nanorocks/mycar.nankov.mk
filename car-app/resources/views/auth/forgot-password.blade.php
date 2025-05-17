@@ -1,16 +1,16 @@
 <!-- filepath: /home/nanorocks/Documents/mycar.nankov.mk/car-app/resources/views/auth/forgot-password.blade.php -->
 <x-guest-layout>
-    <div class="flex flex-col items-center justify-center bg-base-200">
-        <div class="card w-full max-w-md shadow-lg bg-base-100">
+    <div class="flex flex-col items-center justify-center ">
+        <div class="card w-full max-w-md shadow-lg bg-base-200">
             <div class="card-body">
                 <div class="mb-4 text-sm text-gray-600 dark:text-gray-400 text-center">
                     {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
                 </div>
 
                 <div class="mb-4 text-center">
-                    <a href="{{ route('login') }}" class="link link-primary text-sm">
+                    <x-nav-link href="{{ route('login') }}" class="link-primary">
                         {{ __('Go back to login') }}
-                    </a>
+                    </x-nav-link>
                 </div>
 
                 <!-- Session Status -->

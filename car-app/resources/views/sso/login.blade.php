@@ -2,8 +2,8 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <div class="flex flex-col items-center justify-center bg-base-200">
-            <div class="card w-full max-w-md shadow-lg bg-base-100">
+        <div class="flex flex-col items-center justify-center">
+            <div class="card w-full max-w-md shadow-lg bg-base-200">
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -18,7 +18,7 @@
                         <!-- Password -->
                         <div class="form-control mt-4">
                             <x-input-label for="password" :value="__('Password')" />
-                            <x-text-input id="password" class="input input-bordered w-full mt-1" type="password"
+                            <x-text-input-white id="password" class="input" type="password"
                                 name="password" required autocomplete="current-password" />
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
@@ -33,9 +33,9 @@
                         </div>
                         <div class="form-control mt-4">
                             @if (Route::has('password.request'))
-                                <a class="link link-primary text-sm" href="{{ route('password.request') }}">
+                                <x-nav-link class="link-primary" href="{{ route('password.request') }}">
                                     {{ __('Forgot your password?') }}
-                                </a>
+                                </x-nav-link>
                             @endif
                         </div>
 

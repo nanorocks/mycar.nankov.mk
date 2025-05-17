@@ -3,5 +3,5 @@
 
 <input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge([
     'class' =>
-        'input input-bordered w-full text-white',
+        'input w-full',
 ]) !!}>

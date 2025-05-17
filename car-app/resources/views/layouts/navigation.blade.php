@@ -14,12 +14,7 @@
 
     <!-- Navbar End -->
     <div class="navbar-end gap-2">
-        <label class="swap swap-rotate btn btn-ghost btn-circle">
-            <input type="checkbox" onchange="toggleTheme()" class="hidden" id="theme-toggle" />
-            <x-icons.sun />
-            <x-icons.moon />
-        </label>
-
+ 
         <button class="btn btn-ghost btn-circle">
             <div class="indicator">
                 <x-icons.bell />
@@ -54,7 +49,7 @@
                 <x-icons.profile />
             </label>
             <ul tabindex="0" class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
-                <li><a href="#">
+                <li><a href="{{ route('profile.edit') }}">
                         <x-icons.profile />
                         Profile</a></li>
                 <li>

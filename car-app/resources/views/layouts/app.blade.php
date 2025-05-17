@@ -16,7 +16,7 @@
     <div class="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content">
-            <div class="container mx-auto pb-8">
+            <div class="px-3 mx-auto pb-12 mb-6">
                 @if (isset($header))
                     {{ $header }}
                 @endif
@@ -28,6 +28,9 @@
         </div>
         @include('layouts.sidebar')
     </div>
+    @include('layouts.footer')
+
+
     @livewireScripts
     <script>
         // Function to toggle the theme
