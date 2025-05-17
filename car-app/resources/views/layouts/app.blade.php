@@ -75,6 +75,9 @@
 
         function toggleAllMenus() {
             const menus = document.querySelectorAll('.menu ul');
+            const toggleMenuCollapsed = document.getElementById('toggle-menu-collapse');
+            const toggleMenuExtended = document.getElementById('toggle-menu-extended');
+
             menus.forEach(menu => {
                 if (areMenusExpanded) {
                     menu.classList.add('hidden');

@@ -48,15 +48,29 @@
 
                 </label>
 
-                <button class="btn btn-ghost btn-circle" onclick="toggleAllMenus()">
+                <label class="swap swap-rotate btn btn-ghost btn-circle">
+
+                    <input type="checkbox" onchange="toggleAllMenus()" class="hidden" id="toggle-all-menu" />
+
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-copy-slash-icon lucide-copy-slash">
-                        <line x1="12" x2="18" y1="18" y2="12" />
-                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                        id="toggle-menu-collapse"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="swap-on main-grid-item-icon">
+                        <path d="M12 17V3" />
+                        <path d="m6 11 6 6 6-6" />
+                        <path d="M19 21H5" />
                     </svg>
-                </button>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        id="toggle-menu-extended"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="swap-off main-grid-item-icon">
+                        <path d="M5 3h14" />
+                        <path d="m18 13-6-6-6 6" />
+                        <path d="M12 7v14" />
+                    </svg>
+                </label>
             </div>
 
         </div>
@@ -64,40 +78,40 @@
         <!-- Sidebar content here -->
         <li>
             <a href="{{ route('dashboard') }}">
-            <x-icons.home />
-            {{ __('Dashboard') }}
+                <x-icons.home />
+                {{ __('Dashboard') }}
             </a>
         </li>
 
         <li class="group">
             <a href="#" class="flex items-center gap-2" onclick="toggleSubMenu(event, 'vehicles-menu')">
-            <!-- Vehicle Icon -->
-            <x-icons.vehicle />
-            {{ __('Vehicles') }}
+                <!-- Vehicle Icon -->
+                <x-icons.vehicle />
+                {{ __('Vehicles') }}
             </a>
             <ul id="vehicles-menu"
-            class="hidden bg-base-200 p-2 rounded shadow-none transition-all duration-300 ease-in-out">
-            <li>
-                <a href="{{ route('vehicles.create') }}" class="flex items-center gap-2 px-2 py-2">
-                <!-- Add New Vehicle Icon -->
-                <x-icons.add-vehicle />
-                {{ __('Add New Vehicle') }}
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('vehicles.index') }}" class="flex items-center gap-2 px-2 py-2">
-                <!-- Vehicle List Icon -->
-                <x-icons.vehicle-list />
-                {{ __('Vehicle List') }}
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('vehicles.search') }}" class="flex items-center gap-2 px-2 py-2">
-                <!-- Vehicle Search Icon -->
-                <x-icons.vehicle-search />
-                {{ __('Vehicle Search') }}
-                </a>
-            </li>
+                class="hidden bg-base-200 p-2 rounded shadow-none transition-all duration-300 ease-in-out">
+                <li>
+                    <a href="{{ route('vehicles.create') }}" class="flex items-center gap-2 px-2 py-2">
+                        <!-- Add New Vehicle Icon -->
+                        <x-icons.add-vehicle />
+                        {{ __('Add New Vehicle') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('vehicles.index') }}" class="flex items-center gap-2 px-2 py-2">
+                        <!-- Vehicle List Icon -->
+                        <x-icons.vehicle-list />
+                        {{ __('Vehicle List') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('vehicles.search') }}" class="flex items-center gap-2 px-2 py-2">
+                        <!-- Vehicle Search Icon -->
+                        <x-icons.vehicle-search />
+                        {{ __('Vehicle Search') }}
+                    </a>
+                </li>
             </ul>
         </li>
 

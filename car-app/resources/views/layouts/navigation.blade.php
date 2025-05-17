@@ -15,12 +15,12 @@
     <!-- Navbar End -->
     <div class="navbar-end gap-2">
 
-        <button class="btn btn-ghost btn-circle">
+        <a href="{{ route('notifications.index') }}" class="btn btn-ghost btn-circle">
             <div class="indicator">
-                <x-icons.bell />
-                <span class="badge badge-xs badge-primary indicator-item z-0"></span>
+            <x-icons.bell />
+            <span class="badge badge-xs badge-primary indicator-item z-0"></span>
             </div>
-        </button>
+        </a>
 
         <!-- Settings Dropdown -->
         <div class="dropdown dropdown-end">
