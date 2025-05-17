@@ -1,8 +1,32 @@
+<!-- filepath: /home/nanorocks/Documents/mycar.nankov.mk/car-app/resources/views/profile/edit.blade.php -->
 @component('layouts.app')
-    <div class="pb-12">
-        <h2 class="font-semibold text-xl leading-tight py-6 px-6">
+    <div class="pb-12 pt-6 py-4 sm:py-6 lg:py-8 mx-auto">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs text-sm">
+            <ul>
+            <li>
+                <a href="{{ route('dashboard') }}">
+                <x-icons.home />
+                {{ __('Dashboard') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('profile.edit') }}">
+                <x-icons.profile />
+                {{ __('Profile') }}
+                </a>
+            </li>
+            </ul>
+        </div>
+
+        <!-- Heading and Description -->
+        <h2 class="font-semibold text-xl leading-tight pt-4">
             {{ __('Profile') }}
         </h2>
+        <p class="text-sm pb-4">
+            {{ __('Manage your profile information, update your password, or delete your account.') }}
+        </p>
+
         <div class="mx-auto">
             <div class="bg-base-200 shadow rounded-xl p-6 mb-6">
                 <div class="max-w-xl">

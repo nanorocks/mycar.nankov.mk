@@ -15,7 +15,7 @@
     <div class="min-h-screen flex flex-col justify-center items-center pt-6 sm:pt-0">
         <div class="flex justify-center mb-6">
             <a href="/">
-                <img src="{{ asset('img/logo.png') }}" class="w-40 rounded-lg shadow-lg" alt="Logo" />
+                <img src="{{ asset('img/logo.png') }}" class="w-40 rounded-lg shadow-none" alt="Logo" />
             </a>
         </div>
         <div class="flex justify-center mb-4">
